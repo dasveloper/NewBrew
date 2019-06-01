@@ -1,0 +1,70 @@
+path /users/{uid} is User {
+    read() { isAuthenticated() }
+    write() { isCurrentUser(uid) }
+}
+
+path /tasks/{uid} is Task {
+    read() { true }
+    write() { true }
+}
+path /tasks is Task {
+    read() { true }
+    write() { true }
+}
+
+type Lists extends List[] {}
+type Tasks extends Task[] {}
+type Upvotes extends Task[] {}
+type Downvotes extends Task[] {}
+
+type ListItems extends ListItem[] {}
+type Participants extends Participant[] {}
+
+type User {
+    profile: Profile,
+    lists: Lists,
+    tasks: Tasks,
+    reach: Reach,
+    votes: Votes
+}
+type Votes {
+  upvotes: Upvotes,
+  downvotes: Downvotes
+}
+
+type Reach {
+    reachCount: Number
+}
+type Profile {
+    name: String,
+    emailNotifications: Boolean,
+    phoneNotifications: Boolean
+    profilePic: String
+}
+
+type List {
+    name: String,
+    description: String,
+    items: ListItems
+}
+
+type ListItem {
+  title: String,
+  done: Boolean
+}
+
+type Task {
+    title: String,
+    time: Number,
+    project: String,
+    done: Boolean,
+    upvotes: Number,
+    imagelink: String
+}
+
+type Participant {
+  uid: String
+}
+
+isAuthenticated() { auth != null }
+isCurrentUser(uid) { auth != null && auth.uid == uid }

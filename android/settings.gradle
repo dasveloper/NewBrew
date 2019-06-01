@@ -1,0 +1,3 @@
+rootProject.name = 'react-native-do-backend'
+
+include ':app'

@@ -1,0 +1,210 @@
+{
+  "rules": {
+    "users": {
+      "$uid": {
+        ".validate": "newData.hasChildren(['profile', 'reach', 'votes'])",
+        "profile": {
+          ".validate": "newData.hasChildren(['name', 'emailNotifications', 'phoneNotifications', 'profilePic'])",
+          "name": {
+            ".validate": "newData.isString()"
+          },
+          "emailNotifications": {
+            ".validate": "newData.isBoolean()"
+          },
+          "phoneNotifications": {
+            ".validate": "newData.isBoolean()"
+          },
+          "profilePic": {
+            ".validate": "newData.isString()"
+          },
+          "$other": {
+            ".validate": "false"
+          }
+        },
+        "lists": {
+          "$key1": {
+            ".validate": "newData.hasChildren(['name', 'description'])",
+            "name": {
+              ".validate": "newData.isString()"
+            },
+            "description": {
+              ".validate": "newData.isString()"
+            },
+            "items": {
+              "$key2": {
+                ".validate": "newData.hasChildren(['title', 'done'])",
+                "title": {
+                  ".validate": "newData.isString()"
+                },
+                "done": {
+                  ".validate": "newData.isBoolean()"
+                },
+                "$other": {
+                  ".validate": "false"
+                }
+              },
+              ".validate": "newData.hasChildren()"
+            },
+            "$other": {
+              ".validate": "false"
+            }
+          },
+          ".validate": "newData.hasChildren()"
+        },
+        "tasks": {
+          "$key3": {
+            ".validate": "newData.hasChildren(['title', 'time', 'project', 'done', 'upvotes', 'imagelink'])",
+            "title": {
+              ".validate": "newData.isString()"
+            },
+            "time": {
+              ".validate": "newData.isNumber()"
+            },
+            "project": {
+              ".validate": "newData.isString()"
+            },
+            "done": {
+              ".validate": "newData.isBoolean()"
+            },
+            "upvotes": {
+              ".validate": "newData.isNumber()"
+            },
+            "imagelink": {
+              ".validate": "newData.isString()"
+            },
+            "$other": {
+              ".validate": "false"
+            }
+          },
+          ".validate": "newData.hasChildren()"
+        },
+        "reach": {
+          ".validate": "newData.hasChildren(['reachCount'])",
+          "reachCount": {
+            ".validate": "newData.isNumber()"
+          },
+          "$other": {
+            ".validate": "false"
+          }
+        },
+        "votes": {
+          ".validate": "newData.hasChildren()",
+          "upvotes": {
+            "$key3": {
+              ".validate": "newData.hasChildren(['title', 'time', 'project', 'done', 'upvotes', 'imagelink'])",
+              "title": {
+                ".validate": "newData.isString()"
+              },
+              "time": {
+                ".validate": "newData.isNumber()"
+              },
+              "project": {
+                ".validate": "newData.isString()"
+              },
+              "done": {
+                ".validate": "newData.isBoolean()"
+              },
+              "upvotes": {
+                ".validate": "newData.isNumber()"
+              },
+              "imagelink": {
+                ".validate": "newData.isString()"
+              },
+              "$other": {
+                ".validate": "false"
+              }
+            },
+            ".validate": "newData.hasChildren()"
+          },
+          "downvotes": {
+            "$key3": {
+              ".validate": "newData.hasChildren(['title', 'time', 'project', 'done', 'upvotes', 'imagelink'])",
+              "title": {
+                ".validate": "newData.isString()"
+              },
+              "time": {
+                ".validate": "newData.isNumber()"
+              },
+              "project": {
+                ".validate": "newData.isString()"
+              },
+              "done": {
+                ".validate": "newData.isBoolean()"
+              },
+              "upvotes": {
+                ".validate": "newData.isNumber()"
+              },
+              "imagelink": {
+                ".validate": "newData.isString()"
+              },
+              "$other": {
+                ".validate": "false"
+              }
+            },
+            ".validate": "newData.hasChildren()"
+          },
+          "$other": {
+            ".validate": "false"
+          }
+        },
+        "$other": {
+          ".validate": "false"
+        },
+        ".read": "auth != null",
+        ".write": "auth != null && auth.uid == $uid"
+      }
+    },
+    "tasks": {
+      "$uid": {
+        ".validate": "newData.hasChildren(['title', 'time', 'project', 'done', 'upvotes', 'imagelink'])",
+        "title": {
+          ".validate": "newData.isString()"
+        },
+        "time": {
+          ".validate": "newData.isNumber()"
+        },
+        "project": {
+          ".validate": "newData.isString()"
+        },
+        "done": {
+          ".validate": "newData.isBoolean()"
+        },
+        "upvotes": {
+          ".validate": "newData.isNumber()"
+        },
+        "imagelink": {
+          ".validate": "newData.isString()"
+        },
+        "$other": {
+          ".validate": "false"
+        },
+        ".read": "true",
+        ".write": "true"
+      },
+      ".validate": "newData.hasChildren(['title', 'time', 'project', 'done', 'upvotes', 'imagelink'])",
+      "title": {
+        ".validate": "newData.isString()"
+      },
+      "time": {
+        ".validate": "newData.isNumber()"
+      },
+      "project": {
+        ".validate": "newData.isString()"
+      },
+      "done": {
+        ".validate": "newData.isBoolean()"
+      },
+      "upvotes": {
+        ".validate": "newData.isNumber()"
+      },
+      "imagelink": {
+        ".validate": "newData.isString()"
+      },
+      "$other": {
+        ".validate": "false"
+      },
+      ".read": "true",
+      ".write": "true"
+    }
+  }
+}
